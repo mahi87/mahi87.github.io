@@ -6,7 +6,7 @@
         <meta name="generator" content="Pelican" />
         <title>My First Blog</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
-        <meta name="description" content="Following is my first blog." />
+        <meta name="description" content="Restore data from backup file using docker image Do you want to just restore data from a backup file and don't want to use mssql server for that?..." />
 </head>
 
 <body id="index" class="home">
@@ -35,7 +35,47 @@
         </address>
 <p>In <a href="/category/personal-blog.html">Personal Blog</a>.</p>
 
-</footer><!-- /.post-info -->      <p>Following is my first blog.</p>
+</footer><!-- /.post-info -->      <h2>Restore data from backup file using docker image</h2>
+<p><em>Do you want to just restore data from a backup file and don't want to use mssql server for that?</em><br>
+<strong>Creating docker image is the answer.</strong> </p>
+<h2>Reason why I ditch SSMS/mssql server studio</h2>
+<ol>
+<li>Full blown installation </li>
+<li>for fresh DB, it needs a complete clean up.</li>
+<li>I just wanted to restore data and do not need to fire queries necessarily. </li>
+</ol>
+<h2>Build docker image</h2>
+<p>Let's build docker image that will restore our data from the backup file.<br>
+Open a text editor and copy below content into <code>Dockerfile</code> </p>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">mcr.microsoft.com/mssql/server:2017-latest</span>
+
+<span class="k">ENV</span><span class="w"> </span><span class="nv">ACCEPT_EULA</span><span class="o">=</span>y
+<span class="k">ENV</span><span class="w"> </span><span class="nv">MSSQL_SA_PASSWORD</span><span class="o">=</span>YourPassword
+<span class="k">ENV</span><span class="w"> </span><span class="nv">MSSQL_PID</span><span class="o">=</span>Express
+
+<span class="k">EXPOSE</span><span class="w"> </span><span class="s">1433</span>
+
+<span class="k">COPY</span><span class="w"> </span>your_db.bak /var/opt/mssql/backup/your_db_name.bak
+<span class="k">RUN</span><span class="w"> </span><span class="o">(</span>/opt/mssql/bin/sqlservr --accept-eula <span class="p">&amp;</span> <span class="o">)</span> <span class="p">|</span> grep -q <span class="s2">&quot;Server is listening on&quot;</span> <span class="o">&amp;&amp;</span> /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P <span class="s1">&#39;YourPassword&#39;</span> -Q <span class="s2">&quot;RESTORE DATABASE your_db_name FROM DISK=&#39;/var/opt/mssql/backup/your_db_name.bak&#39; WITH MOVE &#39;your_db_name&#39; TO &#39;/var/opt/mssql/data/your_db_name.mdf&#39;, MOVE &#39;your_db_name_log&#39; TO &#39;/var/opt/mssql/data/your_db_name_log.ldf&#39;&quot;</span>
+</code></pre></div>
+
+<p>Let's understand line by line</p>
+<ul>
+<li>
+<p><code>FROM mcr.microsoft.com/mssql/server:2017-latest</code> specifies the parent mssql image with <code>2017:latest</code> version. </p>
+</li>
+<li>
+<p><strong>Environment Variables</strong></p>
+<ul>
+<li><code>ENV ACCEPT_EULA=y</code> to accept <em>End User License Agreement</em></li>
+<li><code>ENV MSSQL_SA_PASSWORD=YourPassword</code> to specify your database system administrator password. replace <code>YourPassword</code> with your password.</li>
+<li><code>ENV MSSQL_PID=Express</code> to specify the mssql server edition or product key. <em>Default value = <code>Developer</code></em></li>
+</ul>
+</li>
+<li>
+<p><code>EXPOSE 1433</code> </p>
+</li>
+</ul>
     </div><!-- /.entry-content -->
 
   </article>
