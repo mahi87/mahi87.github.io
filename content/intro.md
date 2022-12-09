@@ -12,7 +12,7 @@ Category: docker, mssql, how-to
 2. for fresh DB, it needs a complete clean up.
 3. I just wanted to restore data and do not need to fire queries necessarily. 
 
-## Build docker image
+## Write Dockerfile
 
 Open a text editor and copy below content into `Dockerfile` 
 
@@ -60,3 +60,10 @@ RUN (/opt/mssql/bin/sqlservr --accept-eula & ) | grep -q "Server is listening on
     
     to run sql query `-Q "RESTORE DATABASE $your_db_name FROM DISK='/var/opt/mssql/backup/$your_db_name.bak' WITH MOVE '$your_db_name' TO '/var/opt/mssql/data/$your_db_name.mdf', MOVE '$your_db_name_log' TO '/var/opt/mssql/data/$your_db_name_log.ldf'"`
   
+## Build Docker Image
+
+Now since we have created Dockerfile, Let's build the Image using below command-
+> $ docker build -t Name:latest .  
+
+- `Name` specifies the name of your image. 
+- `latest` specifies the tag, you can specify the version of you image. it is optional.
