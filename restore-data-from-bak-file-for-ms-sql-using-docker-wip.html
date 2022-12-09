@@ -4,21 +4,27 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content="Pelican" />
-        <title>Tech-Journal</title>
+        <title>Restore data from bak-file for MS-SQL using Docker (WIP)</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="Do you want to restore data from a backup file and don't want to use mssql server? Creating docker image is the answer. Why I am ditching..." />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
                 <h1><a href="/">Tech-Journal</a></h1>
                 <nav><ul>
-                    <li><a href="/category/docker-mssql-how-to.html">docker, mssql, how-to</a></li>
+                    <li class="active"><a href="/category/docker-mssql-how-to.html">docker, mssql, how-to</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/restore-data-from-bak-file-for-ms-sql-using-docker-wip.html" rel="bookmark"
+           title="Permalink to Restore data from bak-file for MS-SQL using Docker (WIP)">Restore data from bak-file for MS-SQL using Docker (WIP)</a></h1>
+    </header>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/restore-data-from-bak-file-for-ms-sql-using-docker-wip.html">Restore data from bak-file for MS-SQL using Docker (WIP)</a></h1>
+    <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2022-12-05T10:20:00+05:30">
                 Published: Mon 05 December 2022
@@ -29,7 +35,7 @@
         </address>
 <p>In <a href="/category/docker-mssql-how-to.html">docker, mssql, how-to</a>.</p>
 
-</footer><!-- /.post-info --><blockquote>
+</footer><!-- /.post-info -->      <blockquote>
 <p>Do you want to restore data from a backup file and don't want to use mssql server?<br>
 <strong>Creating docker image is the answer.</strong> </p>
 </blockquote>
@@ -94,8 +100,11 @@ A. because we want to run Restore db sql query. </p>
 </ul>
 <p>to run sql query <code>-Q "RESTORE DATABASE $your_db_name FROM DISK='/var/opt/mssql/backup/$your_db_name.bak' WITH MOVE '$your_db_name' TO '/var/opt/mssql/data/$your_db_name.mdf', MOVE '$your_db_name_log' TO '/var/opt/mssql/data/$your_db_name_log.ldf'"</code></p>
 </li>
-</ul>                </article>
-            </aside><!-- /#featured -->
+</ul>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
         <section id="extras" class="body">
         </section><!-- /#extras -->
 
