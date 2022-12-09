@@ -48,4 +48,15 @@ RUN (/opt/mssql/bin/sqlservr --accept-eula & ) | grep -q "Server is listening on
 - `COPY PATH_TO_YOUR_BACKUP_FILE /var/opt/mssql/backup/your_db_name.bak` copies your back-up file on the specified location inside container. feel free to change the destination path.
 
 - **Let's break `RUN` command**
-    - 
+    - `/opt/mssql/bin/sqlservr --accept-eula &` will run `sqlservr` script with the required `--accept-eula` agreement which will start the server.
+    > Q. why do we need to run the server?  
+    > A. because we want to run Restore db sql query. 
+    - `&` specifies this script will run in the background.
+    - `| grep` will grep the output from the server and wait for `"Server is listening on"`.  
+    - `/opt/mssql-tools/bin/sqlcmd` will run `sqlcmd` script which will take 
+        - `-S localhost` for host
+        - `-U sa` for username
+        - `-P 'YourPassword'` for password
+    
+    to run sql query `-Q "RESTORE DATABASE $your_db_name FROM DISK='/var/opt/mssql/backup/$your_db_name.bak' WITH MOVE '$your_db_name' TO '/var/opt/mssql/data/$your_db_name.mdf', MOVE '$your_db_name_log' TO '/var/opt/mssql/data/$your_db_name_log.ldf'"`
+  
