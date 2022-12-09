@@ -45,7 +45,7 @@
 <li>for fresh DB, it needs a complete clean up.</li>
 <li>I just wanted to restore data and do not need to fire queries necessarily. </li>
 </ol>
-<h2>Build docker image</h2>
+<h2>Write Dockerfile</h2>
 <p>Open a text editor and copy below content into <code>Dockerfile</code> </p>
 <div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">mcr.microsoft.com/mssql/server:2017-latest</span>
 
@@ -100,6 +100,15 @@ A. because we want to run Restore db sql query. </p>
 </ul>
 <p>to run sql query <code>-Q "RESTORE DATABASE $your_db_name FROM DISK='/var/opt/mssql/backup/$your_db_name.bak' WITH MOVE '$your_db_name' TO '/var/opt/mssql/data/$your_db_name.mdf', MOVE '$your_db_name_log' TO '/var/opt/mssql/data/$your_db_name_log.ldf'"</code></p>
 </li>
+</ul>
+<h2>Build Docker Image</h2>
+<p>Now since we have created Dockerfile, Let's build the Image using below command-</p>
+<blockquote>
+<p>$ docker build -t Name:latest .  </p>
+</blockquote>
+<ul>
+<li><code>Name</code> specifies the name of your image. </li>
+<li><code>latest</code> specifies the tag, you can specify the version of you image. it is optional.</li>
 </ul>
     </div><!-- /.entry-content -->
 
