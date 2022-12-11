@@ -4,21 +4,27 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content="Pelican" />
-        <title>Tech-Journal</title>
+        <title>Restore data from bak-file for MS-SQL using Docker</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="Do you want to restore data from a backup file and don't want to use full blown mssql server in local? How about creating docker image for it? Why..." />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
                 <h1><a href="/">Tech-Journal</a></h1>
                 <nav><ul>
-                    <li><a href="/category/how-to.html">How-To?</a></li>
+                    <li class="active"><a href="/category/how-to.html">How-To?</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/restore-data-from-bak-file-for-ms-sql-using-docker.html" rel="bookmark"
+           title="Permalink to Restore data from bak-file for MS-SQL using Docker">Restore data from bak-file for MS-SQL using Docker</a></h1>
+    </header>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/restore-data-from-bak-file-for-ms-sql-using-docker.html">Restore data from bak-file for MS-SQL using Docker</a></h1>
+    <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2022-12-05T10:20:00+05:30">
                 Published: Mon 05 December 2022
@@ -29,7 +35,7 @@
         </address>
 <p>In <a href="/category/how-to.html">How-To?</a>.</p>
 <p>tags: <a href="/tag/docker.html">docker</a> <a href="/tag/mssql.html">mssql</a> <a href="/tag/how-to.html">how-to</a> </p>
-</footer><!-- /.post-info --><blockquote>
+</footer><!-- /.post-info -->      <blockquote>
 <p>Do you want to restore data from a backup file and don't want to use full blown mssql server in local?<br>
 <strong>How about creating docker image for it?</strong> </p>
 </blockquote>
@@ -125,8 +131,11 @@ which will execute SQL query to restore data from the database backup file.</li>
 <li><code>&lt;name&gt;</code> specify the name of your image. </li>
 <li><code>latest</code> specifies the tag, you can specify the version of you image. It is optional.</li>
 <li><code>.</code> is the directory containing the <code>Dockerfile</code> we created</li>
-</ul>                </article>
-            </aside><!-- /#featured -->
+</ul>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
         <section id="extras" class="body">
         </section><!-- /#extras -->
 
